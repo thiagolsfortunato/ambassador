@@ -38,13 +38,14 @@ go 1.13
 //  3. If you do add a `replace` command to this file, you must also
 //     add it to the go.mod in apro.git (see above for explanation).
 //
-//  4. We use https://github.com/datawire/libk8s to manage the
-//     Kubernetes library versions (since the Kubernetes folks make it
-//     such a nightmare).  See the docs there if you need to fuss with
-//     the versions of any of the k8s.io/ libraries.  If you find
-//     yourself having to do any hacks with k8s.io library versions
-//     (like doing a `replace` for a dozen different k8s.io/
-//     packages), stop, and ask someone for advice.
+//  4. We used to use https://github.com/datawire/libk8s to manage the
+//     Kubernetes library versions (since the Kubernetes folks made it
+//     such a nightmare), but recent versions of Kubernetes 1.y.z now
+//     have useful "v0.y.z" git tags that Go understands, so it's
+//     actually quite reasonable now.  If you find yourself having to
+//     do any hacks with k8s.io library versions (like doing a
+//     `replace` for a dozen different k8s.io/ packages), stop, and
+//     ask someone for advice.
 //
 //  5. `go mod tidy` is going to try to remove `github.com/cncf/udpa`--don't let it!
 //     That will break `make generate`.  Keep the github.com/cncf/udpa version
@@ -58,7 +59,6 @@ require (
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869
 	github.com/cncf/udpa v0.0.0-20200324003616-bae28a880fdb // indirect
 	github.com/cncf/udpa/go v0.0.0-20200324003616-bae28a880fdb
-	github.com/datawire/libk8s v0.0.0-20191023073802-9add2eb01af2
 	github.com/datawire/pf v0.0.0-20180510150411-31a823f9495a
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/ecodia/golang-awaitility v0.0.0-20180710094957-fb55e59708c7
@@ -85,19 +85,21 @@ require (
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.4.0
-	golang.org/x/crypto v0.0.0-20191028145041-f83a4685e152
+	golang.org/x/crypto v0.0.0-20200220183623-bac4c82f6975
 	golang.org/x/net v0.0.0-20191028085509-fe3aa8a45271
 	golang.org/x/sys v0.0.0-20191028164358-195ce5e7f934
 	google.golang.org/grpc v1.25.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gopkg.in/yaml.v2 v2.2.4
+	gopkg.in/yaml.v2 v2.2.8
 	helm.sh/helm/v3 v3.0.2
 	istio.io/gogo-genproto v0.0.0-20190904133402-ee07f2785480
-	k8s.io/api v0.0.0-20191016110408-35e52d86657a
-	k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
-	k8s.io/cli-runtime v0.0.0-20191016114015-74ad18325ed5
-	k8s.io/client-go v0.0.0-20191016111102-bec269661e48
+	k8s.io/api v0.17.4
+	k8s.io/apiextensions-apiserver v0.17.4 // indirect
+	k8s.io/apimachinery v0.17.4
+	k8s.io/cli-runtime v0.17.4
+	k8s.io/client-go v0.17.4
 	k8s.io/helm v2.16.5+incompatible
+	k8s.io/kubectl v0.17.4 // indirect
 	sigs.k8s.io/yaml v1.1.0
 )
 
